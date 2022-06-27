@@ -23,9 +23,13 @@ function leerTareasLocalStorage(){
     if(listadoTareasLS?.length > 0){
       this.listadoTareas = listadoTareasLS
       console.log(`se cargaron ${listadoTareasLS.length} tareas desde el localStorage`)
+      $.notify(`se cargaron ${listadoTareasLS.length} tareas desde el localStorage`,"success");
     }else{
-      console.log("no se encontraron tares en el localStorage")
+        $.notify(`no se encontraron tares en el localStorage`,"info");
+        console.log("no se encontraron tares en el localStorage")
+ 
     }
+    
 }
 function escribirTareaLocalStorage(tarea){
     var listadoTareasLS = JSON.parse(localStorage.getItem('tareas'))
@@ -33,13 +37,15 @@ function escribirTareaLocalStorage(tarea){
         localStorage.setItem('tareas',JSON.stringify([tarea]))
         leerTareasLocalStorage()
         addTareaHtml(tarea)
+        $.notify(`Tarea cargada`,"success");
         return console.log("Tarea cargada")
+
     }
     listadoTareasLS.push(tarea)   
     localStorage.setItem('tareas',JSON.stringify(listadoTareasLS))
     leerTareasLocalStorage()
     addTareaHtml(tarea)
-   
+    $.notify(`Tarea cargada`,"success");
     console.log("Tarea cargada")
 }
 
